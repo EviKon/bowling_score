@@ -21,11 +21,27 @@ RSpec.describe Score do
       end
     end
 
-    context 'when the is a spare in the rolls but its not the final roll' do
+    context 'when there is a spare in the rolls but its not the final roll' do
       let(:rolls) { [ 9, '/', 9, '-', 9, '/', 9, '-', 9, '-', 9, '-', 9, '-', 9, '-', 9, '-', 9, '-'] }
 
       it 'returns the sum of the numbers in the array' do
         expect(subject).to eql(110)
+      end
+    end
+
+    context 'when there is a strike in the rolls but its not the final roll' do
+      let(:rolls) { [ 'X', 9, '-', 2, 3, '-', 9, '-', 9, '-', 9, '-', 9, '-', 9, '-', 9, '-', 9 ] }
+
+      it 'returns the sum of the numbers in the array' do
+        expect(subject).to eql(98)
+      end
+    end
+
+    context 'when there is more than one strike in the rolls but its not the final roll' do
+      let(:rolls) { [ 'X', 'X', '-', 2, 3, '-', 9, '-', 9, '-', 9, '-', 9, '-', 9, '-', 9, '-' ] }
+
+      it 'returns the sum of the numbers in the array' do
+        expect(subject).to eql(92)
       end
     end
   end
