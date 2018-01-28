@@ -44,5 +44,29 @@ RSpec.describe Score do
         expect(subject).to eql(92)
       end
     end
+
+    context 'when there is a spare and a strike in the roll but not in the last one' do
+      let(:rolls) { [ 'X', 'X', '-', '/', 3, '-', 9, '-', 9, '-', 9, '-', 9, '-', 9, '-', 9, '-' ] }
+
+      it 'returns the sum of the numbers in the array' do
+        expect(subject).to eql(103)
+      end
+    end
+
+    context 'when the final roll is a strike' do
+      let(:rolls) { [ 'X', 'X', '-', '/', 3, '-', 9, '-', 9, '-', 9, '-', 9, '-', 9, '-', 'X', 9, 3 ] }
+
+      it 'returns the score of the rolls plus the extra' do
+        expect(subject).to eql(116)
+      end
+    end
+
+    context 'when the roll is a spare' do
+      let(:rolls) { [ 'X', 'X', '-', '/', 3, '-', 9, '-', 9, '-', 9, '-', 9, '-', 9, '-', 1, '/', 9 ] }
+
+      it 'returns the score of the rolls plus one more' do
+        expect(subject).to eql(113)
+      end
+    end
   end
 end
